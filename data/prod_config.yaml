@@ -1,0 +1,14 @@
+environment: production
+database:
+  host: prod-db.company.com
+  port: 5432
+  name: app_prod
+  ssl: true
+api:
+  base_url: https://api.company.com
+  timeout: 120
+  rate_limit: 10000
+features:
+  debug_mode: false
+  cache_enabled: true
+  logging_level: ERROR

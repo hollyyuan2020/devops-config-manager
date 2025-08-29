@@ -1,0 +1,14 @@
+environment: staging
+database:
+  host: staging-db.company.com
+  port: 5432
+  name: app_staging
+  ssl: true
+api:
+  base_url: https://api-staging.company.com
+  timeout: 60
+  rate_limit: 5000
+features:
+  debug_mode: false
+  cache_enabled: true
+  logging_level: INFO

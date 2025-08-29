@@ -1,0 +1,14 @@
+environment: development
+database:
+  host: localhost
+  port: 5432
+  name: app_dev
+  ssl: false
+api:
+  base_url: http://localhost:8000
+  timeout: 30
+  rate_limit: 1000
+features:
+  debug_mode: true
+  cache_enabled: false
+  logging_level: DEBUG
