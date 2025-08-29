@@ -88,3 +88,31 @@ class ConfigManager:
         config = self.get_config(environment)
         return config.get('features', {}).get('debug_mode', False)
 
+
+    def validate_database_config(self, environment: str) -> Dict[str, Any]:
+        """Detailed database configuration validation"""
+        config = self.get_config(environment)
+        db_config = config.get('database', {})
+        
+        issues = []
+        
+        # Check required fields
+        required_fields = ['host', 'port', 'name', 'ssl']
+        for field in required_fields:
+            if field not in db_config:
+                issues.append(f"Missing required field: {field}")
+        
+        # Validate port
+        port = db_config.get('port')
+        if port and (not isinstance(port, int) or not (1 <= port <= 65535)):
+            issues.append(f"Invalid port: {port}")
+        
+        # Validate SSL for non-development environments
+        if environment != 'development' and not db_config.get('ssl', False):
+            issues.append("SSL should be enabled for non-development environments")
+        
+        return {
+            'valid': len(issues) == 0,
+            'issues': issues,
+            'environment': environment
+        }
