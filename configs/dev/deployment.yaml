@@ -1,0 +1,7 @@
+deployment:
+  replicas: 1
+  resources:
+    cpu: "100m"
+    memory: "128Mi"
+  image_tag: "latest"
+  restart_policy: "Always"
